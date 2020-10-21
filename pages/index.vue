@@ -6,6 +6,7 @@
       </button>
     </div>
     <List :photos="photos"/>
+
   </div>
 </template>
 

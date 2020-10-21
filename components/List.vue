@@ -22,5 +22,12 @@
 </script>
 
 <style scoped>
-
+section{
+  margin: auto;
+  max-width: 1250px;
+  display: flex;
+  flex-direction: row;
+  padding: 1.5em;
+  flex-wrap: wrap;
+}
 </style>
