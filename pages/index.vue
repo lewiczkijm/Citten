@@ -10,22 +10,24 @@
 </template>
 
 <script>
-
+import got from "got"
+import store from "../data/store"
 import List from "../components/List";
 export default {
   components: {
       List
   },
   asyncData: async ()=> {
+      store.pushList([
+          {url:"https://artsland.ru/files/logos/9f0e36594297ac65582dfb001340ef90.jpg",name:"Серый кот",description:"gfhjyfj"},
+          {url:"https://sun9-49.userapi.com/Sp6TwhKC0_msI7AHA7TRLiNy8EDzvRt31A7PHA/SwuArBYZi2Y.jpg",name:"Охотник",description:"gfhjyfj"},
+          {url:"https://besthqwallpapers.com/Uploads/17-3-2018/44588/thumb-persian-cat-4k-ball-of-threads-kitten-pets.jpg",name:"С клуьком",description:"gfhjyfj"},
+          {url:"https://besthqwallpapers.com/Uploads/10-5-2018/51915/thumb-russian-blue-cat-kitten-close-up-domestic-cats-cute-animals.jpg",name:"Корзина",description:"gfhjyfj"},
+          {url:"https://vologda-oblast.ru/upload/iblock/0a8/koshki.jpg",name:"глазища",description:"gfhjyfj"},
+      ]);
       return {
           // Заглушка для списка фотографий
-          photos:[
-              {url:"https://artsland.ru/files/logos/9f0e36594297ac65582dfb001340ef90.jpg",name:"Серый кот",description:"gfhjyfj"},
-              {url:"https://sun9-49.userapi.com/Sp6TwhKC0_msI7AHA7TRLiNy8EDzvRt31A7PHA/SwuArBYZi2Y.jpg",name:"Охотник",description:"gfhjyfj"},
-              {url:"https://besthqwallpapers.com/Uploads/17-3-2018/44588/thumb-persian-cat-4k-ball-of-threads-kitten-pets.jpg",name:"С клуьком",description:"gfhjyfj"},
-              {url:"https://besthqwallpapers.com/Uploads/10-5-2018/51915/thumb-russian-blue-cat-kitten-close-up-domestic-cats-cute-animals.jpg",name:"Корзина",description:"gfhjyfj"},
-              {url:"https://vologda-oblast.ru/upload/iblock/0a8/koshki.jpg",name:"глазища",description:"gfhjyfj"},
-          ]
+          photos:store.state.list
       }
   }
 }

@@ -2,7 +2,7 @@
  * Обшее состояние приложения
  * @type {{debug: boolean, state: {}}}
  */
-export const store = {
+export default {
   debug:true,
   timeout:3000,
   state:{
