@@ -1,6 +1,7 @@
 <template>
   <section>
     <Photo v-for="image in photos"
+           :data="image"
            :url="image.url"
            :name="image.name"
            :description="image.description"

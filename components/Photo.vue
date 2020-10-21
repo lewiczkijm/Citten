@@ -1,14 +1,14 @@
 <template>
 <div>
-  <img :src="url"/>
-  <span>{{name}}</span>
+  <img :src="data.url" :alt="data.name"/>
+  <span>{{data.name}}</span>
 </div>
 </template>
 
 <script>
     export default {
         name: "Photo",
-        props:["url","name","description"]
+        props:["data"]
     }
 </script>
 
