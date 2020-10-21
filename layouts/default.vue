@@ -1,7 +1,7 @@
 <template>
   <div>
     <header :class="$style.header">
-       <div :class="$style.htext"><a href=""><h1 >КотоФото</h1></a><div></div></div>
+       <div :class="$style.htext"><nuxt-link to="/"><h1 >КотоФото</h1></nuxt-link><div></div></div>
 
     </header>
     <nuxt/>
