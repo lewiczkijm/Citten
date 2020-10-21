@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: "Photo",
+        name: "Thumbnail",
         props:["data"],
         methods:{
             like(ev){alert(1)},

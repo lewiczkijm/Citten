@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Photo v-for="image in photos"
+    <Thumbnail v-for="image in photos"
            :data="image"
            :url="image.url"
            :name="image.name"
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-    import Photo from "./Photo";
+    import Thumbnail from "./Thumbnail";
     export default {
         name: "List",
-        components: {Photo},
+        components: {Thumbnail},
         props:["photos","count"],
         computed:{
         }
