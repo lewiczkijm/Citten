@@ -1,11 +1,12 @@
 <template>
 <div :class="$style.container">
   <div :class="$style.wrapper">
+    <img :class="$style.delete" src="@/assets/images/delete.png" v-on:click="del"/>
     <img :src="data.url" :alt="data.name"/>
   </div>
   <div :class="$style.downsaide">
     <span>{{data.name}}</span>
-    <span><img src="@/assets/images/heart.png" :class="$style.like"> {{data.likes}}</span>
+    <span v-on:click="like"><img src="@/assets/images/heart.png" :class="$style.like"> {{data.likes}}</span>
   </div>
 
 
@@ -15,7 +16,11 @@
 <script>
     export default {
         name: "Photo",
-        props:["data"]
+        props:["data"],
+        methods:{
+            like(ev){alert(1)},
+            del(ev){alert(2)}
+        }
     }
 </script>
 
@@ -40,5 +45,10 @@
   .like{
     position: relative;
     top: 3px;
+  }
+  .delete{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 247px;
   }
 </style>
