@@ -2,7 +2,7 @@
 <div :class="$style.container">
   <div :class="$style.wrapper">
     <img :class="$style.delete" src="@/assets/images/delete.png" v-on:click="del"/>
-    <img :src="data.url" :alt="data.name"/>
+    <nuxt-link :to="`photo/${data.objectId}`"><img :src="data.url" :alt="data.name"/></nuxt-link>
   </div>
   <div :class="$style.downsaide">
     <span>{{data.name}}</span>
