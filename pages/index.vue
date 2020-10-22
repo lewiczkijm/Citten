@@ -18,8 +18,18 @@ export default {
   components: {
       List
   },
-  asyncData: async function({store}){
-    await store.dispatch("getListFromNet")
+  asyncData: async function({store,error}){
+    try{
+        await store.dispatch("getListFromNet")
+    } catch (err) {
+        console.log(err);
+        return error({
+            statusCode: 404,
+            message: 'Сервер не доступен'
+        })
+
+    }
+
   },
   computed:{
       ...mapState(["list"])

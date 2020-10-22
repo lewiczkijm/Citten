@@ -16,8 +16,15 @@ export const mutations = {
 };
 
 export const actions = {
-  async getListFromNet({commit}){
-    const list = await this.$axios.$get("");
-    commit("SET_LIST",list)
+  //Первонвчальная загрузка списка изображений
+  async getListFromNet({state,commit}){
+    if(state.list.length) return;
+    try{
+      const list = await this.$axios.$get("");
+      commit("SET_LIST",list)
+    } catch (e) {
+      throw e;
+    }
+
   }
 };
