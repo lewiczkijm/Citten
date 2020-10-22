@@ -2,8 +2,12 @@
   <div>
     <Loader/>
     <ErrMsg/>
+    <AddPhoto
+      v-show="showAddWin"
+      v-on:exit="showAddWin=false"
+    />
     <div :class="$style.btnpane">
-      <button class="button is-primary is-rounded is-large">
+      <button @click="showAddWin=true" class="button is-primary is-rounded is-large">
         + add
       </button>
     </div>
@@ -17,8 +21,10 @@ import { mapState } from 'vuex'
 import List from "../components/List";
 import Loader from "../components/Loader";
 import ErrMsg from "../components/ErrMsg";
+import AddPhoto from "../components/AddPhoto";
 export default {
   components: {
+      AddPhoto,
       ErrMsg,
       Loader,
       List
@@ -34,7 +40,7 @@ export default {
         })
 
     }
-
+    return {showAddWin:false}
   },
   computed:{
       ...mapState(["list"])
