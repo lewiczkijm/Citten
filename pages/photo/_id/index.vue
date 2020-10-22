@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader/>
     <div :class="$style.card">
       <div>
         <img :src="current.url">
@@ -22,9 +23,14 @@
 
 <script>
     import { mapState } from 'vuex'
+    import Loader from "@/components/Loader";
+
     export default {
         name: "index.vue",
         layout:"singlePhoto",
+        components:{
+          Loader
+        },
         async asyncData({params,store,error}){
             // Загрузка изображений из сети только в случае надобности
             if(!!!store.state.current.name){
