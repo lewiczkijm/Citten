@@ -26,7 +26,9 @@ export const mutations = {
   },
 
 
-
+  SET_STATUS_WHITE(state,value){
+    state.statusWhite = value;
+  },
 
   SET_ERROR_MSG(state,msg){
     state.errorMsg = msg
@@ -65,12 +67,13 @@ export const actions = {
   // добавление лайка
   async addLike({commit},photo){
     const likes = photo.likes + 1;
+    commit("SET_STATUS_WHITE",true);
     try{
-      console.log(photo.objectId);
       photo = await this.$axios.$put(`/${photo.objectId}`,{likes:likes});
       commit("SET_LIKE",photo.objectId)
     }catch(e){
       console.log(e)
     }
+    commit("SET_STATUS_WHITE",false);
   }
 };

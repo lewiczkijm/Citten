@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader/>
     <div :class="$style.btnpane">
       <button class="button is-primary is-rounded is-large">
         + add
@@ -13,8 +14,10 @@
 <script>
 import { mapState } from 'vuex'
 import List from "../components/List";
+import Loader from "../components/Loader";
 export default {
   components: {
+      Loader,
       List
   },
   asyncData: async function({store,error}){
