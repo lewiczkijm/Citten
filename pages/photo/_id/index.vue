@@ -4,7 +4,10 @@
       <div>
         <img :src="current.url">
         <div :class="$style.pane">
-          <span :class="$style.likes"><img src="@/assets/images/heart32.png"><span>{{current.likes}}</span></span>
+          <span :class="$style.likes" @click="like(current)">
+            <img src="@/assets/images/heart32.png">
+            <span>{{current.likes}}</span>
+          </span>
           <img src="@/assets/images/delete.png">
         </div>
       </div>
@@ -38,6 +41,11 @@
         },
         computed:{
             ...mapState(["current"])
+        },
+        methods:{
+            like(data){
+                this.$store.dispatch("addLike",data)
+            }
         }
     }
 </script>

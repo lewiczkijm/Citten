@@ -15,6 +15,10 @@ export const mutations = {
     state.current = photo
   },
   SET_LIKE(state,objectId){
+    if(!state.list.length){
+      state.current.likes +=1;
+      return
+    }
     for(let i = 0;i <state.list.length;i ++){
       if(state.list[i].objectId === objectId)
         state.list[i].likes += 1;
