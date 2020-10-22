@@ -29,7 +29,7 @@ export default {
     if (this.debug) console.log("addToList called with ", photo);
     callback(photo).then(res=>
       this.state.list.unshift(photo)
-    ).catch(addErrorMsg)
+    ).catch(this.addErrorMsg)
   },
 
   /**
@@ -41,7 +41,7 @@ export default {
     if (this.debug) console.log("deleteFromList called with ", photo);
     callback(photo).then(res=>
       this.state.list = this.state.list.filter(el=> el !== photo)
-    ).catch(addErrorMsg)
+    ).catch(this.addErrorMsg)
   },
 
   /**
@@ -57,15 +57,20 @@ export default {
         if(el.name === photo.name) return photo;
         else return el
       })
-    ).catch(addErrorMsg)
+    ).catch(this.addErrorMsg)
   },
 
   /**
-   * Выбор вкимвного фото для показа на отдельной странице
-   * @param photo
+   * Выбор акимвного фото для показа на отдельной странице
+   * @param id {string}
    */
-  selectCurrentPhoto(photo){
-    if (this.debug) console.log("selectCurrentPhoto called with ", photo);
+  selectCurrentPhoto(id){
+    if (this.debug) console.log("selectCurrentPhoto called with ", id);
+    const photo = this.state.list.find(el=>el.objectId === id);
+    if(!photo){
+      this.addErrorMsg("photo not found");
+      return false
+    }
     this.state.current = photo
   },
 

@@ -5,33 +5,24 @@
         + add
       </button>
     </div>
-    <List :photos="photos"/>
+    <List :photos="list"/>
 
   </div>
 </template>
 
 <script>
-import {axiosServer} from "../axios"
+import { mapState } from 'vuex'
 import store from "../data/store"
 import List from "../components/List";
 export default {
   components: {
       List
   },
-  asyncData: async function(){
-      /*
-      * Загрузка данных на стороне сервера будет работать через axios
-      * Хардкод rest api здесь - не выход. Но пока так будет
-      * */
-
-      if(process.server){
-          let query= await axiosServer.get("");
-          store.pushList(query.data);
-      }
-      return {
-          // Заглушка для списка фотографий
-          photos:store.state.list
-      }
+  asyncData: async function({store}){
+    await store.dispatch("getListFromNet")
+  },
+  computed:{
+      ...mapState(["list"])
   }
 }
 </script>
