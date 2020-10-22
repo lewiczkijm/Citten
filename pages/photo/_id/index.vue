@@ -22,10 +22,18 @@
     export default {
         name: "index.vue",
         layout:"singlePhoto",
-        asyncData({params,store}){
+        async asyncData({params,store,error}){
             // Загрузка изображений из сети только в случае надобности
             if(!!!store.state.current.name){
-
+              try {
+                  await store.dispatch("setCurrentFromServer",params.id)
+              } catch (e) {
+                  // console.log(e);
+                  return error({
+                      statusCode: 404,
+                      message: 'Страница не найдена'
+                  })
+              }
             }
             return {
                 id:params.id,
