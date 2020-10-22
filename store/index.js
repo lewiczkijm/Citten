@@ -43,6 +43,7 @@ export const actions = {
       const list = await this.$axios.$get("");
       commit("SET_LIST",list)
     } catch (e) {
+      console.log(e);
       throw e;
     }
 
@@ -72,7 +73,10 @@ export const actions = {
       photo = await this.$axios.$put(`/${photo.objectId}`,{likes:likes});
       commit("SET_LIKE",photo.objectId)
     }catch(e){
-      console.log(e)
+      commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
+      await sleep(errTimeout);
+      commit("SET_ERROR_MSG","")
+
     }
     commit("SET_STATUS_WHITE",false);
   }
