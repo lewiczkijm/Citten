@@ -26,5 +26,16 @@ export const actions = {
       throw e;
     }
 
+  },
+  setCurrentFromObject({commit},photo){
+    commit("SET_CURRENT",photo)
+  },
+  async setCurrentFromServer({commit},objectId){
+    try{
+      const photo = await this.$axios.$get(`/${objectId}`);
+      commit("SET_CURRENT",photo)
+    }catch(e){
+      throw e
+    }
   }
 };

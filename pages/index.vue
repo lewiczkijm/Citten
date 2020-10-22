@@ -12,7 +12,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import store from "../data/store"
 import List from "../components/List";
 export default {
   components: {

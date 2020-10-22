@@ -2,7 +2,7 @@
 <div :class="$style.container">
   <div :class="$style.wrapper">
     <img :class="$style.delete" src="@/assets/images/delete.png" v-on:click="del"/>
-    <nuxt-link :to="`photo/${data.objectId}`"><img :src="data.url" :alt="data.name"/></nuxt-link>
+    <nuxt-link :to="`photo/${data.objectId}`"><img @click="select(data)" :src="data.url" :alt="data.name"/></nuxt-link>
   </div>
   <div :class="$style.downsaide">
     <span>{{data.name}}</span>
@@ -14,14 +14,17 @@
 </template>
 
 <script>
-    export default {
-        name: "Thumbnail",
-        props:["data"],
-        methods:{
-            like(ev){alert(1)},
-            del(ev){alert(2)}
+export default {
+    name: "Thumbnail",
+    props:["data"],
+    methods:{
+        like(ev){alert(1)},
+        del(ev){alert(2)},
+        select(data){
+            this.$store.dispatch("setCurrentFromObject",data)
         }
     }
+}
 </script>
 
 <style module>
