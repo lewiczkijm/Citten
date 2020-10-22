@@ -10,7 +10,7 @@
             <img src="@/assets/images/heart32.png">
             <span>{{current.likes}}</span>
           </span>
-          <img src="@/assets/images/delete.png">
+          <img src="@/assets/images/delete.png" @click="del(current)">
         </div>
       </div>
     </div>
@@ -54,7 +54,12 @@
         methods:{
             like(data){
                 this.$store.dispatch("addLike",data)
-            }
+            },
+            async del(data){
+                await this.$store.dispatch("deletePhoto",data);
+                setTimeout(3000,this.$router.replace({ path: '/' }));
+
+    }
         }
     }
 </script>
