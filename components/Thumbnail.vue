@@ -1,7 +1,7 @@
 <template>
 <div :class="$style.container">
   <div :class="$style.wrapper">
-    <img :class="$style.delete" src="@/assets/images/delete.png" v-on:click="del"/>
+    <img :class="$style.delete" src="@/assets/images/delete.png" v-on:click="del(data)"/>
     <nuxt-link :to="`photo/${data.objectId}`"><img @click="select(data)" :src="data.url" :alt="data.name"/></nuxt-link>
   </div>
   <div :class="$style.downsaide">
@@ -21,7 +21,9 @@ export default {
         like(data){
             this.$store.dispatch("addLike",data)
         },
-        del(ev){alert(2)},
+        del(data){
+            this.$store.dispatch("deletePhoto",data)
+        },
         select(data){
             this.$store.dispatch("setCurrentFromObject",data)
         }

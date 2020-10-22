@@ -24,6 +24,9 @@ export const mutations = {
         state.list[i].likes += 1;
     }
   },
+  DELETE_PHOTO(state,objectId){
+    state.list = state.list.filter(el=>el.objectId !== objectId)
+  },
 
 
   SET_STATUS_WHITE(state,value){
@@ -77,6 +80,20 @@ export const actions = {
       await sleep(errTimeout);
       commit("SET_ERROR_MSG","")
 
+    }
+    commit("SET_STATUS_WHITE",false);
+  },
+
+  //Удаление фотографии
+  async deletePhoto({commit},data){
+    commit("SET_STATUS_WHITE",true);
+    try{
+      await this.$axios.$delete(`/${data.objectId}`);
+      commit("DELETE_PHOTO",data.objectId)
+    }catch (e) {
+      commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
+      await sleep(errTimeout);
+      commit("SET_ERROR_MSG","")
     }
     commit("SET_STATUS_WHITE",false);
   }
