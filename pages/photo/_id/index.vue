@@ -4,7 +4,7 @@
       <div>
         <img :src="current.url">
         <div :class="$style.pane">
-          <span :class="$style.likes"><img src="@/assets/images/heart32.png"><span>{{likes}}</span></span>
+          <span :class="$style.likes"><img src="@/assets/images/heart32.png"><span>{{current.likes}}</span></span>
           <img src="@/assets/images/delete.png">
         </div>
       </div>
@@ -34,13 +34,6 @@
                       message: 'Страница не найдена'
                   })
               }
-            }
-            return {
-                id:params.id,
-                url:"https://vologda-oblast.ru/upload/iblock/0a8/koshki.jpg",
-                name:"Lorem ipsum",
-                likes:4,
-                description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mattis diam sapien. Donec bibendum, diam a consequat ultrices, nunc velit lacinia orci, eu sollicitudin lacus nibh sit amet erat. Cras bibendum tincidunt dolor, vel egestas lorem venenatis non. Fusce ullamcorper feugiat bibendum. Duis nec arcu id leo mollis porttitor a volutpat ipsum. Vestibulum vel facilisis magna. Nunc at feugiat mi. Etiam id tortor feugiat turpis facilisis efficitur et ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi eleifend dapibus lacus et viverra. Donec facilisis dapibus dapibus. Ut rhoncus a sem vel posuere.`
             }
         },
         computed:{

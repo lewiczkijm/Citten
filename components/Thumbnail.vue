@@ -6,7 +6,7 @@
   </div>
   <div :class="$style.downsaide">
     <span>{{data.name}}</span>
-    <span v-on:click="like"><img src="@/assets/images/heart.png" :class="$style.like"> {{data.likes}}</span>
+    <span v-on:click="like(data)"><img src="@/assets/images/heart.png" :class="$style.like"> {{data.likes}}</span>
   </div>
 
 
@@ -18,7 +18,9 @@ export default {
     name: "Thumbnail",
     props:["data"],
     methods:{
-        like(ev){alert(1)},
+        like(data){
+            this.$store.dispatch("addLike",data)
+        },
         del(ev){alert(2)},
         select(data){
             this.$store.dispatch("setCurrentFromObject",data)

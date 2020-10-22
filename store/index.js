@@ -3,7 +3,8 @@ const sleep = m => new Promise(r => setTimeout(r, m));
 export const state = ()=>({
   list:[],
   current:[],
-  errorMsg:''
+  errorMsg:'',
+  statusWhite:false
 });
 
 export const mutations = {
@@ -12,6 +13,19 @@ export const mutations = {
   },
   SET_CURRENT(state,photo){
     state.current = photo
+  },
+  SET_LIKE(state,objectId){
+    for(let i = 0;i <state.list.length;i ++){
+      if(state.list[i].objectId === objectId)
+        state.list[i].likes += 1;
+    }
+  },
+
+
+
+
+  SET_ERROR_MSG(state,msg){
+    state.errorMsg = msg
   }
 };
 
@@ -27,15 +41,32 @@ export const actions = {
     }
 
   },
+
+  // Выбор активной фотографии при нажатии на миниатюрке
   setCurrentFromObject({commit},photo){
     commit("SET_CURRENT",photo)
   },
+
+
+  // Выбор активной фотографии по objectId при переходе по ссылке
   async setCurrentFromServer({commit},objectId){
     try{
       const photo = await this.$axios.$get(`/${objectId}`);
       commit("SET_CURRENT",photo)
     }catch(e){
       throw e
+    }
+  },
+
+  // добавление лайка
+  async addLike({commit},photo){
+    const likes = photo.likes + 1;
+    try{
+      console.log(photo.objectId);
+      photo = await this.$axios.$put(`/${photo.objectId}`,{likes:likes});
+      commit("SET_LIKE",photo.objectId)
+    }catch(e){
+      console.log(e)
     }
   }
 };
