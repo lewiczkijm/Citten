@@ -1,6 +1,7 @@
 <template>
   <div>
     <Loader/>
+    <ErrMsg/>
     <div :class="$style.card">
       <div>
         <img :src="current.url">
@@ -24,11 +25,13 @@
 <script>
     import { mapState } from 'vuex'
     import Loader from "@/components/Loader";
+    import ErrMsg from "../../../components/ErrMsg";
 
     export default {
         name: "index.vue",
         layout:"singlePhoto",
         components:{
+            ErrMsg,
           Loader
         },
         async asyncData({params,store,error}){

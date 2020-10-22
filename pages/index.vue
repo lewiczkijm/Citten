@@ -1,6 +1,7 @@
 <template>
   <div>
     <Loader/>
+    <ErrMsg/>
     <div :class="$style.btnpane">
       <button class="button is-primary is-rounded is-large">
         + add
@@ -15,8 +16,10 @@
 import { mapState } from 'vuex'
 import List from "../components/List";
 import Loader from "../components/Loader";
+import ErrMsg from "../components/ErrMsg";
 export default {
   components: {
+      ErrMsg,
       Loader,
       List
   },
