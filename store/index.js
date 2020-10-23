@@ -5,7 +5,7 @@ export const state = ()=>({
   current:[],
   errorMsg:'',
   statusWhite:false,
-  page:1
+  page:24
 });
 
 export const mutations = {
@@ -14,7 +14,7 @@ export const mutations = {
   },
   SET_NEXT_PAGE_LIST(state,listFragment){
     state.list.push(...listFragment);
-    state.page += 1;
+    state.page += 24;
   },
   SET_CURRENT(state,photo){
     state.current = photo
@@ -61,10 +61,13 @@ export const actions = {
 
   },
   async getNextToList({state,commit}){
+    commit("SET_STATUS_WHITE",true);
     try {
       const list = await this.$axios.$get(`/photos?sortBy=created%20desc&pageSize=24&offset=${state.page}`);
       commit("SET_NEXT_PAGE_LIST",list);
+      commit("SET_STATUS_WHITE",false);
     } catch (e) {
+      commit("SET_STATUS_WHITE",false);
       commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
       await sleep(errTimeout);
       commit("SET_ERROR_MSG","")

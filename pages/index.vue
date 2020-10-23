@@ -13,6 +13,15 @@
     </div>
     <List :photos="list"/>
 
+    // Кнопка вместо полосы прокрутки. Только первый этап - проверка программного кода
+    <button
+      class="button is-large is-primary is-rounded"
+      style="margin-left: 2em"
+      @click="loadNext"
+    >
+      Еще
+    </button>
+
   </div>
 </template>
 
@@ -41,6 +50,11 @@ export default {
 
     }
     return {showAddWin:false}
+  },
+  methods:{
+      loadNext(){
+          this.$store.dispatch("getNextToList")
+      }
   },
   computed:{
       ...mapState(["list"])
