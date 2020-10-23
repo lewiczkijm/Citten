@@ -1,11 +1,14 @@
 const errTimeout = 3000;
+const contentInPage = 24;
+
 const sleep = m => new Promise(r => setTimeout(r, m));
 export const state = ()=>({
   list:[],
   current:[],
   errorMsg:'',
   statusWhite:false,
-  page:24
+  page:contentInPage,
+  stopList:false
 });
 
 export const mutations = {
@@ -14,7 +17,7 @@ export const mutations = {
   },
   SET_NEXT_PAGE_LIST(state,listFragment){
     state.list.push(...listFragment);
-    state.page += 24;
+    state.page += contentInPage;
   },
   SET_CURRENT(state,photo){
     state.current = photo
@@ -35,6 +38,9 @@ export const mutations = {
   ADD_NEW_PHOTO(state,photo){
     state.list.unshift(photo)
   },
+  STOP_PAGING(state){
+    state.stopList = true;
+  },
 
 
 
@@ -53,7 +59,7 @@ export const actions = {
   async getListFromNet({state,commit}){
     if(state.list.length) return;
     try{
-      const list = await this.$axios.$get("/photos?sortBy=created%20desc&pageSize=24&offset=0");
+      const list = await this.$axios.$get(`/photos?sortBy=created%20desc&pageSize=${contentInPage}&offset=0`);
       commit("SET_LIST",list)
     } catch (e) {
       throw e;
@@ -61,9 +67,13 @@ export const actions = {
 
   },
   async getNextToList({state,commit}){
+    if(state.stopList) return;
     commit("SET_STATUS_WHITE",true);
     try {
-      const list = await this.$axios.$get(`/photos?sortBy=created%20desc&pageSize=24&offset=${state.page}`);
+      const list = await this.$axios.$get(`/photos?sortBy=created%20desc&pageSize=${contentInPage}&offset=${state.page}`);
+      if(list.length < contentInPage)
+        commit("STOP_PAGING");
+
       commit("SET_NEXT_PAGE_LIST",list);
       commit("SET_STATUS_WHITE",false);
     } catch (e) {

@@ -11,16 +11,7 @@
         + add
       </button>
     </div>
-    <List :photos="list"/>
-
-    // Кнопка вместо полосы прокрутки. Только первый этап - проверка программного кода
-    <button
-      class="button is-large is-primary is-rounded"
-      style="margin-left: 2em"
-      @click="loadNext"
-    >
-      Еще
-    </button>
+    <List v-endpage="loadNext" :photos="list"/>
 
   </div>
 </template>
@@ -58,7 +49,17 @@ export default {
   },
   computed:{
       ...mapState(["list"])
-  }
+  },
+    directives:{
+      endpage:{
+          inserted:function (el, binding) {
+              window.addEventListener("scroll",()=>{
+                  if(window.pageYOffset + window.innerHeight === document.body.scrollHeight)
+                  binding.value()
+              })
+          }
+      }
+    }
 }
 </script>
 
