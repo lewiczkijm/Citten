@@ -4,12 +4,17 @@ export const state = ()=>({
   list:[],
   current:[],
   errorMsg:'',
-  statusWhite:false
+  statusWhite:false,
+  page:1
 });
 
 export const mutations = {
   SET_LIST(state,list){
     state.list = list
+  },
+  SET_NEXT_PAGE_LIST(state,listFragment){
+    state.list.push(...listFragment);
+    state.page += 1;
   },
   SET_CURRENT(state,photo){
     state.current = photo
@@ -48,15 +53,23 @@ export const actions = {
   async getListFromNet({state,commit}){
     if(state.list.length) return;
     try{
-      const list = await this.$axios.$get("/photos?sortBy=created%20asc");
+      const list = await this.$axios.$get("/photos?sortBy=created%20desc&pageSize=24&offset=0");
       commit("SET_LIST",list)
     } catch (e) {
-      console.log(e);
       throw e;
     }
 
   },
-
+  async getNextToList({state,commit}){
+    try {
+      const list = await this.$axios.$get(`/photos?sortBy=created%20desc&pageSize=24&offset=${state.page}`);
+      commit("SET_NEXT_PAGE_LIST",list);
+    } catch (e) {
+      commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
+      await sleep(errTimeout);
+      commit("SET_ERROR_MSG","")
+    }
+  },
   // Выбор активной фотографии при нажатии на миниатюрке
   setCurrentFromObject({commit},photo){
     commit("SET_CURRENT",photo)
