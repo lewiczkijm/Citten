@@ -27,6 +27,11 @@ export const mutations = {
   DELETE_PHOTO(state,objectId){
     state.list = state.list.filter(el=>el.objectId !== objectId)
   },
+  ADD_NEW_PHOTO(state,photo){
+    state.list.unshift(photo)
+  },
+
+
 
 
   SET_STATUS_WHITE(state,value){
@@ -43,7 +48,7 @@ export const actions = {
   async getListFromNet({state,commit}){
     if(state.list.length) return;
     try{
-      const list = await this.$axios.$get("");
+      const list = await this.$axios.$get("/photos?sortBy=created%20asc");
       commit("SET_LIST",list)
     } catch (e) {
       console.log(e);
@@ -61,7 +66,7 @@ export const actions = {
   // Выбор активной фотографии по objectId при переходе по ссылке
   async setCurrentFromServer({commit},objectId){
     try{
-      const photo = await this.$axios.$get(`/${objectId}`);
+      const photo = await this.$axios.$get(`/photos/${objectId}`);
       commit("SET_CURRENT",photo)
     }catch(e){
       throw e
@@ -73,7 +78,7 @@ export const actions = {
     const likes = photo.likes + 1;
     commit("SET_STATUS_WHITE",true);
     try{
-      photo = await this.$axios.$put(`/${photo.objectId}`,{likes:likes});
+      photo = await this.$axios.$put(`/photos/${photo.objectId}`,{likes:likes});
       commit("SET_LIKE",photo.objectId)
     }catch(e){
       commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
@@ -88,8 +93,22 @@ export const actions = {
   async deletePhoto({commit},data){
     commit("SET_STATUS_WHITE",true);
     try{
-      await this.$axios.$delete(`/${data.objectId}`);
+      await this.$axios.$delete(`/photos/${data.objectId}`);
       commit("DELETE_PHOTO",data.objectId)
+    }catch (e) {
+      commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
+      await sleep(errTimeout);
+      commit("SET_ERROR_MSG","")
+    }
+    commit("SET_STATUS_WHITE",false);
+  },
+
+  //
+  async addPhoto({commit},photo){
+    commit("SET_STATUS_WHITE",true);
+    try{
+      photo = await this.$axios.$post('/photos',photo);
+      commit("ADD_NEW_PHOTO",photo)
     }catch (e) {
       commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
       await sleep(errTimeout);

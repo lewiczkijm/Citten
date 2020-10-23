@@ -57,7 +57,7 @@
             },
             async del(data){
                 await this.$store.dispatch("deletePhoto",data);
-                setTimeout(3000,this.$router.replace({ path: '/' }));
+                setTimeout(this.$router.replace({ path: '/' }),1000);
 
     }
         }
