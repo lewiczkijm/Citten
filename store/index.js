@@ -110,9 +110,16 @@ export const actions = {
       photo = await this.$axios.$post('/photos',photo);
       commit("ADD_NEW_PHOTO",photo)
     }catch (e) {
-      commit("SET_ERROR_MSG","Нет соединения! повторите попытку позже.");
+      commit("SET_STATUS_WHITE",false);
+      const error = {...e};
+      let msg = "";
+      if(error.response && error.response.data.code === 1155)
+        msg = "Фото с таким именем уже существует!";
+      else msg = "Нет соединения! повторите попытку позже.";
+      commit("SET_ERROR_MSG",msg);
       await sleep(errTimeout);
-      commit("SET_ERROR_MSG","")
+      commit("SET_ERROR_MSG","");
+      throw e
     }
     commit("SET_STATUS_WHITE",false);
   }
