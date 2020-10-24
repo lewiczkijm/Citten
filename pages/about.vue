@@ -15,6 +15,7 @@
       <p>P. S. Добавление кошек в коллекцию приветствуется!</p>
       <p>
       <ul>
+        <li><a href="https://cittenphoto.herokuapp.com/">cittenphoto.herokuapp.com</a> Приложение</li>
         <li><a href="https://github.com/lewiczkijm/Citten">github.com/lewiczkijm/Citten</a> Страница проекта</li>
         <li><a href="https://backendless.com/">backendless.com</a> API, используемое в проекте</li>
         <li><a href="https://nuxtjs.org/">nuxtjs.org</a></li>
