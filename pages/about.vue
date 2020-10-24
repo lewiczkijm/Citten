@@ -12,12 +12,14 @@
         страницу при прокрутке страницы вниз. Есть функции добавления и удаления, а также возможность ставить лайки.
         Предусмотрена обработка сетевых ошибок.</p>
       <p>Исходные коды приложения доступны, конструктивная критика приветствуется!</p>
+      <p>P. S. Добавление кошек в коллекцию приветствуется!</p>
       <p>
-        <ul>
-          <li><a href="https://backendless.com/">backendless.com</a></li>
-          <li><a href="https://nuxtjs.org/">https://nuxtjs.org/</a></li>
-          <li><a href="https://bulma.io/">https://bulma.io/</a></li>
-        </ul>
+      <ul>
+        <li><a href="https://github.com/lewiczkijm/Citten">github.com/lewiczkijm/Citten</a> Страница проекта</li>
+        <li><a href="https://backendless.com/">backendless.com</a> API, используемое в проекте</li>
+        <li><a href="https://nuxtjs.org/">nuxtjs.org</a></li>
+        <li><a href="https://bulma.io/">bulma.io</a> CSS фреймворк, используемый в проекте</li>
+      </ul>
       </p>
     </div>
 </template>
