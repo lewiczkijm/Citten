@@ -35,6 +35,16 @@
 div {
   margin: 1em 10em;
 }
+@media (max-width: 1024px) and (min-width: 400px){
+  div {
+    margin: 1em 3em;
+  }
+}
+@media (max-width: 399px) {
+  div{
+    margin: 1em;
+  }
+}
 h2 {
   margin: 1em 0;
   font-size: 1.5em;
