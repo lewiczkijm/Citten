@@ -4,6 +4,11 @@
   "description": "Nuxt.js project",
   "author": "Michael <lewiczkij.m@yandex.ru>",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

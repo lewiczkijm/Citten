@@ -53,10 +53,18 @@ export default {
     directives:{
       endpage:{
           inserted:function (el, binding) {
-              window.addEventListener("scroll",()=>{
-                  if(window.pageYOffset + window.innerHeight === document.body.scrollHeight)
-                  binding.value()
-              })
+              let trigger = true;
+              function act(){
+                  if(window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 50 && trigger) {
+
+                      binding.value();
+                      trigger = false;
+                      setTimeout(()=>trigger=true,1500)
+                  }
+
+              }
+              window.addEventListener("touchmove",act);
+              window.addEventListener("scroll",act);
           }
       }
     }
