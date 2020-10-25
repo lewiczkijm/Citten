@@ -86,7 +86,6 @@
 }
 .legend {
   margin: 0 auto;
-  width: fit-content;
   padding: 1.5em;
   background: #eeeeee;
 }
@@ -95,7 +94,20 @@
   font-size: 120%;
   font-weight: bold;
 }
-.legend p {
-  width: 600px;
+@media (min-width: 670px) {
+  .legend {
+    width: fit-content;
+  }
+  .legend p {
+    width: 600px;
+  }
+}
+@media (max-width: 669px){
+  .legend {
+    width: 95%;
+  }
+  .legend p {
+    width: 100%;
+  }
 }
 </style>
