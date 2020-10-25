@@ -69,4 +69,19 @@ export default {
     margin-top: 5px;
     margin-left: 247px;
   }
+  @media (max-width: 365px) {
+    .delete{
+      margin-left: 71%;
+    }
+    @media (min-width: 365px) and (max-width: 350px){
+      .delete{
+        margin-left: 60%;
+      }
+    }
+    @media (max-width: 349px){
+      .delete{
+        margin-left: 67%;
+      }
+    }
+  }
 </style>
