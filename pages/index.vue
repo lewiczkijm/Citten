@@ -54,8 +54,10 @@ export default {
       endpage:{
           inserted:function (el, binding) {
               let trigger = true;
+              window.addEventListener("scroll",act);
+
               function act(){
-                  if(window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 50 && trigger) {
+                  if(window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 100 && trigger) {
 
                       binding.value();
                       trigger = false;
@@ -63,8 +65,6 @@ export default {
                   }
 
               }
-              window.addEventListener("touchmove",act);
-              window.addEventListener("scroll",act);
           }
       }
     }
