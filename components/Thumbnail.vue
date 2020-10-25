@@ -6,7 +6,10 @@
   </div>
   <div :class="$style.downsaide">
     <span>{{data.name}}</span>
-    <span v-on:click="like(data)"><img src="@/assets/images/heart.png" :class="$style.like"> {{data.likes}}</span>
+    <span v-on:click="like(data)" :class="$style.likesite">
+      <img src="@/assets/images/heart.png" :class="$style.like">
+      {{data.likes}}
+    </span>
   </div>
 
 
@@ -45,6 +48,14 @@ export default {
     padding: 0 0.2em;
     display: flex;
     justify-content: space-between;
+  }
+  .likesite{
+    display: flex;
+  }
+  .likesite img{
+    width: 16px;
+    height: 16px;
+    margin-right: 0.2em;
   }
   .downsaide span{
     font-weight: bold;
