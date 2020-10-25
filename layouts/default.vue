@@ -20,11 +20,24 @@
     display: flex;
   }
   .htext{
-    max-width: 1280px;
-    min-width: 900px;
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
+  }
+  @media (min-width: 950px) {
+    .htext{
+      width: 900px;
+    }
+  }
+  @media (max-width: 949px) and (min-width: 700px){
+    .htext{
+      width: 600px;
+    }
+  }
+  @media (max-width: 699px){
+    .htext{
+      width: 270px;
+    }
   }
   .htext h1{
     font-size: 2.5em;
