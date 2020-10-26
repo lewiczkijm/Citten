@@ -9,7 +9,7 @@
       <input size="100" type="text" id="url" v-model="url"/><br/>
 
       <label for="description">Описание</label><br/>
-      <textarea cols="100" rows="8" id="description" v-model="description"></textarea>
+      <textarea cols="100" rows="8" id="description" v-model="description"></textarea><br/>
 
       <button class="button is-primary" @click="add">Добавить</button>
       <button class="button is-danger" @click="$emit('exit')">Закрыть</button>
@@ -73,5 +73,19 @@
   .container input, .container textarea {
     width: 600px;
     margin-bottom: 1em;
+  }
+  @media (min-width: 675px) {
+    .container input, .container textarea {
+      width: 600px;
+    }
+  }
+  @media (max-width: 675px){
+    .container {
+      padding: 10px;
+      width: fit-content;
+    }
+    .container input, .container textarea {
+      width: 90vw;
+    }
   }
 </style>
